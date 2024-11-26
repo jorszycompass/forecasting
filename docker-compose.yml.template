@@ -1,0 +1,30 @@
+volumes:
+  pg-data:
+
+services:
+  api:
+    env_file: .env
+    build:
+      context: .
+      args:
+        NPM_TOKEN: xxx
+        PORT: 3000
+    environment:
+      - POSTGRES_WRITE_HOST=db
+      - POSTGRES_READ_HOST=db
+    platform: linux/amd64 # You'll need this for macs that are running arm64, ignore the console warning.
+    ports:
+      - 3000:3000
+
+  ## Dependencies
+  db:
+    image: postgres:16
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: postgres
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
