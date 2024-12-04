@@ -16,5 +16,5 @@ RUN rm -rf /app/src
 RUN rm -rf /app/test
 
 EXPOSE ${PORT}
-ENTRYPOINT ["node", "/app/dist/src/main.js"]
+ENTRYPOINT ["node", "/app/dist/main.js"]
 HEALTHCHECK --interval=5m --timeout=30s --start-period=5s --retries=3 CMD curl --fail http://localhost:${PORT}/status || exit 1
