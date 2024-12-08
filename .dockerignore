@@ -1,0 +1,9 @@
+# Ignore files and directories
+# Ignore everything
+*
+
+# Allow files and directories
+!package*.json
+!src
+!test 
+!tsconfig.json
